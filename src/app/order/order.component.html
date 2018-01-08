@@ -1,90 +1,111 @@
 <section class="content-header">
-      </section>
+</section>
 
-      <section class="content">
-        <section class="invoice">
-              {{form.valid}}
-              {{form.value | json}}
-              <form #form="ngForm" novalidate>
-                <div class="row">
-                  <div class="col-xs-12">
-                    <h2 class="page-header">
-                      <i class="fa fa-shopping-cart"></i> Finalize o seu pedido
-                    </h2>
-                  </div>
-                </div>
+<section class="content">
+  <section class="invoice">
 
-                <div class="row invoice-info">
-                  <div class="col-xs-12">
-                    <p class="lead">Endereço de Entrega:</p>
-                  </div>
-                  <div class="col-sm-6 col-xs-12">
-                    <mt-input-container errorMessage="Campo Obrigatorio" label="Endereço">
-                       <input class="form-control"  name="address" ngModel required minlength="5" autocomplete="off" placeholder="Endereço">
-                    </mt-input-container>
-                  </div>
-                  <div class="col-sm-3 col-xs-6">
-                    <mt-input-container errorMessage="Obrigatorio e somente numeros" label="Número">
-                       <input type="text" class="form-control" name="number"  ngModel required minlenght="5" id="inputSuccess" pattern="^[0-9]*$" placeholder="Número" autocomplete="off">
-                    </mt-input-container>
+    <form [formGroup]="orderForm" novalidate>
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-shopping-cart"></i> Finalize o seu pedido
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="lead"> Seus dados:</p>
+          <div class="col-sm-6 col-xs-12">
+            <mt-input-container errorMessage="Campo Obrigatorio" label="Endereço">
+              <input class="form-control"  formControlName="name"  autocomplete="off" placeholder="Nome">
+            </mt-input-container>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <mt-input-container errorMessage="Email invalido" label="Email">
+              <input class="form-control" formControlName="email"  autocomplete="off" placeholder="Email">
+            </mt-input-container>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <mt-input-container errorMessage="Email invalido" label="Email">
+              <input class="form-control"  formControlName="emailConfirmation"  autocomplete="off" placeholder="Confirmação do Email">
+            </mt-input-container>
+          </div>
+        </div>
 
-                    </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="lead">Endereço de Entrega:</p>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <mt-input-container errorMessage="Campo Obrigatorio" label="Endereço">
+            <input class="form-control"  formControlName="address"  autocomplete="off" placeholder="Endereço">
+          </mt-input-container>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+          <mt-input-container errorMessage="Obrigatorio e somente numeros" label="Número">
+            <input type="text" class="form-control" formControlName="number" placeholder="Número" autocomplete="off">
+          </mt-input-container>
 
-                  <div class="col-sm-4 col-xs-6">
-                    <mt-input-container>
-                        <input type="text" class="form-control" name="optional" ngModel id="inputSuccess" placeholder="Complemento">
-                    </mt-input-container>
-                  </div>
-                  <!-- /.col -->
-                </div>
-                <!-- /.row -->
+        </div>
 
-                <!-- Table row -->
-                <div class="row">
-                  <div class="col-xs-12">
-                    <p class="lead">Itens do Pedido:</p>
-                  </div>
-                     <mt-order-items [items]="cartItems()"
-                     (increaseQty)="increaseQty($event)"
-                     (decreaseQty)="decreaseQty($event)"
-                     (remove)="remove($event)">
-                     </mt-order-items>
-                  <!-- /.col -->
-                </div>
-                <!-- /.row -->
+        <div class="col-sm-4 col-xs-6">
+          <mt-input-container>
+            <input type="text" class="form-control" formControlName="optionalAddress"  placeholder="Complemento">
+          </mt-input-container>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
 
-                <div class="row">
-                  <!-- accepted payments column -->
-                  <div class="col-sm-6 col-xs-12">
-                    <p class="lead">Formas de Pagamento:</p>
+      <!-- Table row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="lead">Itens do Pedido:</p>
+        </div>
+        <mt-order-items [items]="cartItems()"
+        (increaseQty)="increaseQty($event)"
+        (decreaseQty)="decreaseQty($event)"
+        (remove)="remove($event)">
+      </mt-order-items>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
 
-                      <div class="form-group">
-                       <mt-radio [options]="paymentsOptions" name="paymentOption" ngModel required ></mt-radio>
+    <div class="row">
+      <!-- accepted payments column -->
+      <div class="col-sm-6 col-xs-12">
+        <p class="lead">Formas de Pagamento:</p>
 
-                      </div>
+        <div class="form-group">
+          <mt-radio [options]="paymentsOptions" formControlName="paymentOption" ngModel required ></mt-radio>
 
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-6 col-xs-12">
-                    <p class="lead">Frete e Total:</p>
+        </div>
 
-                    <mt-delivery-costs
-                    [delivery]="delivery"
-                    [itemsValue]="itemsValue()"
-                    ></mt-delivery-costs>
-                  </div>
-                  <!-- /.col -->
-                </div>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-6 col-xs-12">
+        <p class="lead">Frete e Total:</p>
 
-              </form>
+        <mt-delivery-costs
+        [delivery]="delivery"
+        [itemsValue]="itemsValue()"
+        ></mt-delivery-costs>
+      </div>
+      <!-- /.col -->
+    </div>
 
-              <div class="row">
-                <div >
-                  <button class="btn btn-success pull-right" [disabled]="!form-valid || cartItems().length === 0"> <i class="fa fa-credit-card"></i> Concluir Pedido </button>
+  </form>
+
+  <div class="row">
+    <div >
+      <button (click)="checkOrder(orderForm.value)" class="btn btn-success pull-right"
+      [disabled]="!orderForm.valid || cartItems().length === 0">
+      <i class="fa fa-credit-card"></i> Concluir Pedido </button>
 
 
-                </div>
-              </div>
+    </div>
+  </div>
 
-          </section>
-      </section>
+</section>
+</section>
