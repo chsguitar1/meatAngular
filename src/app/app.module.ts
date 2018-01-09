@@ -8,7 +8,6 @@ import{ROUTES} from './app.routes'
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantComponent } from './restaurants/restaurant/restaurant.component';
 import {RestaurantsService} from './restaurants/restaurants.service';
@@ -34,7 +33,6 @@ import { RatingComponent } from './shared/rating/rating.component';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    AboutComponent,
     RestaurantsComponent,
     RestaurantComponent,
     RestaurantDetailComponent,
@@ -58,7 +56,11 @@ import { RatingComponent } from './shared/rating/rating.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [RestaurantsService, ShoppingCartService, {provide:LOCALE_ID, useValue: 'pt-BR'},OrderService],
+  providers: [
+    RestaurantsService,
+    ShoppingCartService,
+    {provide:LOCALE_ID, useValue: 'pt-BR'},
+    OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
