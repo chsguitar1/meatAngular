@@ -45,6 +45,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
   providers: [
       {provide:LOCALE_ID, useValue: 'pt-BR'},
   ],
+<<<<<<< HEAD
+=======
+  providers: [
+    RestaurantsService,
+    ShoppingCartService,
+    {provide:LOCALE_ID, useValue: 'pt-BR'},
+    OrderService],
+>>>>>>> d99f2edf9441150c9dc7dc070b538f62370a6931
   bootstrap: [AppComponent]
 })
 export class AppModule { }
