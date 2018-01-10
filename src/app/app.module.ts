@@ -16,7 +16,9 @@ import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.compo
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component'
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import {SharedModule} from './shared/shared.module'
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NotFoundComponent } from './not-found/not-found.component'
+import {LocationStrategy, HashLocationStrategy} from '@angular/common'
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
     ShoppingCartComponent,
     MenuItemComponent,
     ReviewsComponent,
-    OrderSummaryComponent
+    OrderSummaryComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
   ],
   providers: [
+      {provide:LocationStrategy, useClass: HashLocationStrategy},
       {provide:LOCALE_ID, useValue: 'pt-BR'},
   ],
 
