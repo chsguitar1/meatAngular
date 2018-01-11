@@ -21,8 +21,8 @@ import 'rxjs/add/operator/switchMap'
         opacity: 1,
         bottom: '30px'
       })),
-      transition('hidden => visible',animate('500 0s ease-in')),
-      transition('visible => hiden',animate('500 0s ease-out'))
+      transition('hidden => visible',animate('500ms 0s ease-in')),
+      transition('visible => hiden',animate('500ms 0s ease-out'))
     ])
   ]
 })
