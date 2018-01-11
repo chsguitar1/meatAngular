@@ -33,7 +33,7 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common'
     MenuItemComponent,
     ReviewsComponent,
     OrderSummaryComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +46,7 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common'
 
   ],
   providers: [
-      {provide:LocationStrategy, useClass: HashLocationStrategy},
+   
       {provide:LOCALE_ID, useValue: 'pt-BR'},
   ],
 

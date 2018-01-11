@@ -9,9 +9,10 @@ import{OrderService} from '../order/order.service'
 import{RestaurantsService} from '../restaurants/restaurants.service';
 import { SnackbarComponent } from './messages/snackbar/snackbar.component'
 import {NotificationService} from './messages/notification.service'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [InputComponent, RadioComponent, RatingComponent, SnackbarComponent],
-  imports: [ CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [ CommonModule, FormsModule, ReactiveFormsModule,BrowserAnimationsModule],
   exports: [
     InputComponent,
      RadioComponent,
