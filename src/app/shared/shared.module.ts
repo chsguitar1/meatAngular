@@ -9,23 +9,28 @@ import{OrderService} from '../order/order.service'
 import{RestaurantsService} from '../restaurants/restaurants.service';
 import { SnackbarComponent } from './messages/snackbar/snackbar.component'
 import {NotificationService} from './messages/notification.service'
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+//import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {LoginService} from '../security/login/login.service'
 @NgModule({
   declarations: [InputComponent, RadioComponent, RatingComponent, SnackbarComponent],
-  imports: [ CommonModule, FormsModule, ReactiveFormsModule,BrowserAnimationsModule],
+  imports: [ CommonModule, FormsModule, ReactiveFormsModule],
   exports: [
     InputComponent,
-     RadioComponent,
-      RatingComponent,
-      CommonModule,
-      FormsModule,
-      ReactiveFormsModule,SnackbarComponent]
-})
-export class SharedModule{
-static forRoot(): ModuleWithProviders{
-  return{
-    ngModule: SharedModule,
-  providers: [ShoppingCartService, OrderService,RestaurantsService, NotificationService ]
-  }
-}
-}
+    RadioComponent,
+    RatingComponent,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,SnackbarComponent]
+  })
+  export class SharedModule{
+    static forRoot(): ModuleWithProviders{
+      return{
+        ngModule: SharedModule,
+        providers: [ShoppingCartService,
+          OrderService,
+          RestaurantsService,
+          NotificationService,
+          LoginService ]
+        }
+      }
+    }
