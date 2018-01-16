@@ -1,7 +1,7 @@
 import *as jsonServer  from 'json-server'
 import {Express} from 'express'
 import *as fs from 'fs'
-import * as https from 'https'
+import *as https from 'https'
 import {handleAuthencation} from './auth'
 import {handleAutorization} from './authz'
 
