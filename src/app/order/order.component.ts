@@ -5,6 +5,7 @@ import {OrderService} from './order.service'
 import {CartItem} from '../restaurant-detail/shopping-cart/cart-item.model'
 import {Order, OrderItem} from './order.model'
 import {Router} from '@angular/router'
+import 'rxjs/add/operator/do'
 
 
 
@@ -21,6 +22,7 @@ export class OrderComponent implements OnInit {
     {label: 'Cartão de Débito',value: 'DEB'},
     {label: 'Cartão Refeição',value: 'REF'},
   ]
+  orderId: string
   constructor(private orderService: OrderService,
     private router: Router,
   private formBuilder: FormBuilder) { }
@@ -70,11 +72,17 @@ numberPattern = /^[0-9]*$/
     order.orderItems = this.cartItems()
     .map((item: CartItem)=> new OrderItem(item.quantity, item.menuItem.id))
     this.orderService.checkOrder(order)
+    .do((orderId: string) =>{
+      this.orderId = orderId
+    })
     .subscribe( (orderId: string ) => {
       this.router.navigate(['/order-sumary'])
-      console.log(`Compra concluida: ${orderId}`)
+
       this.orderService.clear();1
     })
   }
-
+isOrderCompleted():boolean{
+  console.log(this.orderId)
+  return this.orderId !== undefined
+}
 }
